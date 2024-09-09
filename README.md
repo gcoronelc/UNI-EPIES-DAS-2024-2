@@ -6,10 +6,10 @@
 - Lugar: UNI - FIEECS
 - Horario 1: JUE de 2 a 4 pm (Practica)
 - Horario 2: VIE de 3 a 6 pm (Teoria)
-- Inicio: 30.MAR.2023
-- Delegado: Britney Selomith Pantigoso Infantes
-- Subdelegado 1: Moises Alexander Tapia Basilio
-- Subdelegado 2: Cristian Roger Astucuri Lucas
+- Inicio: 29.AGO.2024
+- Delegada: Alicia Dirceja de Fatima Espiritu Silvestre
+- Subdelegada: 
+
 
 
 # DOCENTE
