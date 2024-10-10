@@ -8,6 +8,14 @@ from GUIA_DETALLE
 order by 1;
 go
 
+select distinct IdProducto, count(distinct PrecioVenta) cant
+from GUIA_DETALLE
+group by IdProducto
+having count(distinct PrecioVenta) > 1
+order by 1;
+go
+
+
 
 -- Pero hay que tener en cuenta que el precio 
 -- de un producto varia en el tiempo
