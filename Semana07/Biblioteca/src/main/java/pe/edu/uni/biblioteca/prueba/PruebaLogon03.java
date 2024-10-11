@@ -18,7 +18,7 @@ public class PruebaLogon03 {
 	
 	public static void main(String[] args) {
 		
-		// Usuario no se encuentra activo
+		// Probando con datos correctos
 		try {
 			// Datos
 			String usuario = "BALAYO";
