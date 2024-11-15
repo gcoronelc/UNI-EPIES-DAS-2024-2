@@ -4,8 +4,14 @@
  */
 package pe.edu.uni.biblioteca.view;
 
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import pe.edu.uni.biblioteca.controller.BiblioController;
 import pe.edu.uni.biblioteca.controller.ConsultaController;
+import pe.edu.uni.biblioteca.dto.EjemplarDto;
 import pe.edu.uni.biblioteca.dto.EstudianteDto;
+import pe.edu.uni.biblioteca.dto.PrestamoDto;
 
 /**
  *
@@ -38,6 +44,11 @@ public class RegistrarPrestamoView extends javax.swing.JInternalFrame {
       jLabel1 = new javax.swing.JLabel();
       txtAluCodigo = new javax.swing.JTextField();
       txtAluNombre = new javax.swing.JTextField();
+      jLabel2 = new javax.swing.JLabel();
+      txtTitulo = new javax.swing.JTextField();
+      btnBuscar = new javax.swing.JButton();
+      jScrollPane1 = new javax.swing.JScrollPane();
+      tblEjemplares = new javax.swing.JTable();
 
       setClosable(true);
       setMaximizable(true);
@@ -45,9 +56,16 @@ public class RegistrarPrestamoView extends javax.swing.JInternalFrame {
 
       jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ACCIONES", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Segoe UI", 1, 18), new java.awt.Color(0, 0, 153))); // NOI18N
 
+      btnCancelar.setBackground(new java.awt.Color(255, 153, 153));
       btnCancelar.setText("Cancelar");
 
+      btnProcesar.setBackground(new java.awt.Color(153, 255, 204));
       btnProcesar.setText("Proceso");
+      btnProcesar.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnProcesarActionPerformed(evt);
+         }
+      });
 
       javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
       jPanel1.setLayout(jPanel1Layout);
@@ -89,17 +107,75 @@ public class RegistrarPrestamoView extends javax.swing.JInternalFrame {
       txtAluNombre.setDisabledTextColor(new java.awt.Color(0, 51, 204));
       txtAluNombre.setEnabled(false);
 
+      jLabel2.setText("Titulo:");
+
+      txtTitulo.setDisabledTextColor(new java.awt.Color(0, 51, 204));
+
+      btnBuscar.setBackground(new java.awt.Color(204, 204, 255));
+      btnBuscar.setText("Buscar");
+      btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnBuscarActionPerformed(evt);
+         }
+      });
+
+      tblEjemplares.setModel(new javax.swing.table.DefaultTableModel(
+         new Object [][] {
+            {null, null, null, null, null, null},
+            {null, null, null, null, null, null},
+            {null, null, null, null, null, null},
+            {null, null, null, null, null, null}
+         },
+         new String [] {
+            "IDEJEMPLAR", "CODIGO", "TITULO", "EDITORIAL", "EDICION", "AÑO"
+         }
+      ) {
+         Class[] types = new Class [] {
+            java.lang.Long.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Object.class
+         };
+         boolean[] canEdit = new boolean [] {
+            false, false, false, false, false, false
+         };
+
+         public Class getColumnClass(int columnIndex) {
+            return types [columnIndex];
+         }
+
+         public boolean isCellEditable(int rowIndex, int columnIndex) {
+            return canEdit [columnIndex];
+         }
+      });
+      tblEjemplares.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+      jScrollPane1.setViewportView(tblEjemplares);
+      if (tblEjemplares.getColumnModel().getColumnCount() > 0) {
+         tblEjemplares.getColumnModel().getColumn(0).setResizable(false);
+         tblEjemplares.getColumnModel().getColumn(1).setResizable(false);
+         tblEjemplares.getColumnModel().getColumn(2).setResizable(false);
+         tblEjemplares.getColumnModel().getColumn(3).setResizable(false);
+         tblEjemplares.getColumnModel().getColumn(4).setResizable(false);
+         tblEjemplares.getColumnModel().getColumn(5).setResizable(false);
+      }
+
       javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
       jPanel2.setLayout(jPanel2Layout);
       jPanel2Layout.setHorizontalGroup(
          jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
          .addGroup(jPanel2Layout.createSequentialGroup()
             .addGap(16, 16, 16)
-            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(txtAluCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(txtAluNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 535, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+               .addComponent(jScrollPane1)
+               .addGroup(jPanel2Layout.createSequentialGroup()
+                  .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                  .addComponent(txtAluCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                  .addComponent(txtAluNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE))
+               .addGroup(jPanel2Layout.createSequentialGroup()
+                  .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                  .addComponent(txtTitulo)
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                  .addComponent(btnBuscar)))
             .addContainerGap())
       );
       jPanel2Layout.setVerticalGroup(
@@ -110,7 +186,14 @@ public class RegistrarPrestamoView extends javax.swing.JInternalFrame {
                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                .addComponent(txtAluCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                .addComponent(txtAluNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addContainerGap(264, Short.MAX_VALUE))
+            .addGap(13, 13, 13)
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+               .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+               .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+               .addComponent(btnBuscar))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
+            .addContainerGap())
       );
 
       javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -140,7 +223,7 @@ public class RegistrarPrestamoView extends javax.swing.JInternalFrame {
    private void txtAluCodigoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAluCodigoKeyReleased
       String codigo = txtAluCodigo.getText();
 		ConsultaController controller = new ConsultaController();
-		estudiante = controller.consultaPorCodigo(codigo);
+		estudiante = controller.consultaEmpleado(codigo);
 		txtAluNombre.setText("");
 		if(estudiante==null){
 			return;
@@ -148,14 +231,77 @@ public class RegistrarPrestamoView extends javax.swing.JInternalFrame {
 		txtAluNombre.setText(estudiante.getApellido() + ", " + estudiante.getNombre());
    }//GEN-LAST:event_txtAluCodigoKeyReleased
 
+   private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+      // Acceder a la tabla
+		DefaultTableModel tabla;
+		tabla = (DefaultTableModel) tblEjemplares.getModel();
+		tabla.setRowCount(0);
+		try {
+			// Dato
+			String titulo = txtTitulo.getText().trim();
+			// Proceso
+			ConsultaController controller = new ConsultaController();
+			List<EjemplarDto> lista = controller.consultaEjemplares(titulo);
+			// Mostrar los datos
+			for (EjemplarDto dto : lista) {
+				Object[] rowData = {
+					dto.getIdejemplar(), dto.getCodigo(),
+					dto.getTitulo(), dto.getEditorial(),
+					dto.getEdicion(), dto.getAnio()
+				};
+				tabla.addRow(rowData);
+			}
+			
+			
+			
+		} catch (Exception e) {
+		}
+   }//GEN-LAST:event_btnBuscarActionPerformed
+
+   private void btnProcesarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcesarActionPerformed
+      try {
+			if(estudiante == null){
+				throw new Exception("Falta el estudiante.");
+			}
+			int fila = tblEjemplares.getSelectedRow();
+			if(fila == -1){
+				throw new Exception("No se ha seleccionado ningun ejemplar.");
+			}
+			Long idEjemplar = Long.valueOf(tblEjemplares.getValueAt(fila, 0).toString());
+			PrestamoDto bean = new PrestamoDto();
+			bean.setIdEjemplar(idEjemplar);
+			bean.setIdEstudiante(estudiante.getIdestudiante());
+			BiblioController controller = new BiblioController();
+			controller.registrarPrestamo(bean);
+			JOptionPane.showMessageDialog(rootPane, "Proceso ok.");
+			limpiarFormulario();
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(rootPane, e.getMessage());
+		}
+   }//GEN-LAST:event_btnProcesarActionPerformed
+
 
    // Variables declaration - do not modify//GEN-BEGIN:variables
+   private javax.swing.JButton btnBuscar;
    private javax.swing.JButton btnCancelar;
    private javax.swing.JButton btnProcesar;
    private javax.swing.JLabel jLabel1;
+   private javax.swing.JLabel jLabel2;
    private javax.swing.JPanel jPanel1;
    private javax.swing.JPanel jPanel2;
+   private javax.swing.JScrollPane jScrollPane1;
+   private javax.swing.JTable tblEjemplares;
    private javax.swing.JTextField txtAluCodigo;
    private javax.swing.JTextField txtAluNombre;
+   private javax.swing.JTextField txtTitulo;
    // End of variables declaration//GEN-END:variables
+
+	private void limpiarFormulario() {
+		txtAluCodigo.setText("");
+		txtAluNombre.setText("");
+		txtTitulo.setText("");
+		DefaultTableModel tabla;
+		tabla = (DefaultTableModel) tblEjemplares.getModel();
+		tabla.setRowCount(0);
+	}
 }

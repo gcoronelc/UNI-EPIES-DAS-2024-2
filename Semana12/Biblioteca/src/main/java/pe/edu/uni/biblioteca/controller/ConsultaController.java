@@ -1,5 +1,7 @@
 package pe.edu.uni.biblioteca.controller;
 
+import java.util.List;
+import pe.edu.uni.biblioteca.dto.EjemplarDto;
 import pe.edu.uni.biblioteca.dto.EstudianteDto;
 import pe.edu.uni.biblioteca.service.ConsultaService;
 
@@ -15,9 +17,14 @@ import pe.edu.uni.biblioteca.service.ConsultaService;
 public class ConsultaController {
 	
 	
-	public EstudianteDto consultaPorCodigo(String codigo){
+	public EstudianteDto consultaEmpleado(String codigo){
 		ConsultaService service = new ConsultaService();
-		return service.consultaPorCodigo(codigo);
+		return service.consultaEmpleado(codigo);
+	}
+
+	public List<EjemplarDto> consultaEjemplares(String titulo){
+		ConsultaService service = new ConsultaService();
+		return service.consultaEjemplares(titulo);
 	}
 
 }

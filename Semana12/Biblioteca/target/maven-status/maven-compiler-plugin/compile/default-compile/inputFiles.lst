@@ -14,8 +14,11 @@ D:\GITHUB\UNI\UNI-EPIES-DAS-2024-2\Semana12\Biblioteca\src\main\java\pe\edu\uni\
 D:\GITHUB\UNI\UNI-EPIES-DAS-2024-2\Semana12\Biblioteca\src\main\java\pe\edu\uni\biblioteca\prueba\PruebaPrestamo02.java
 D:\GITHUB\UNI\UNI-EPIES-DAS-2024-2\Semana12\Biblioteca\src\main\java\pe\edu\uni\biblioteca\service\ConsultaService.java
 D:\GITHUB\UNI\UNI-EPIES-DAS-2024-2\Semana12\Biblioteca\src\main\java\pe\edu\uni\biblioteca\Biblioteca.java
+D:\GITHUB\UNI\UNI-EPIES-DAS-2024-2\Semana12\Biblioteca\src\main\java\pe\edu\uni\biblioteca\dto\EjemplarDto.java
+D:\GITHUB\UNI\UNI-EPIES-DAS-2024-2\Semana12\Biblioteca\src\main\java\pe\edu\uni\biblioteca\controller\ConsultaController.java
 D:\GITHUB\UNI\UNI-EPIES-DAS-2024-2\Semana12\Biblioteca\src\main\java\pe\edu\uni\biblioteca\dto\UsuarioDto.java
 D:\GITHUB\UNI\UNI-EPIES-DAS-2024-2\Semana12\Biblioteca\src\main\java\pe\edu\uni\biblioteca\dto\PrestamoDto.java
+D:\GITHUB\UNI\UNI-EPIES-DAS-2024-2\Semana12\Biblioteca\src\main\java\pe\edu\uni\biblioteca\prueba\PruebaConsultaEjemplares.java
 D:\GITHUB\UNI\UNI-EPIES-DAS-2024-2\Semana12\Biblioteca\src\main\java\pe\edu\uni\biblioteca\view\LogonView.java
 D:\GITHUB\UNI\UNI-EPIES-DAS-2024-2\Semana12\Biblioteca\src\main\java\pe\edu\uni\biblioteca\service\BiblioService.java
 D:\GITHUB\UNI\UNI-EPIES-DAS-2024-2\Semana12\Biblioteca\src\main\java\pe\edu\uni\biblioteca\prueba\PruebaLogon01.java

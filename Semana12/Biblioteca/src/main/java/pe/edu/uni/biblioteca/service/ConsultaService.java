@@ -4,7 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import pe.edu.uni.biblioteca.db.AccesoDB;
+import pe.edu.uni.biblioteca.dto.EjemplarDto;
 import pe.edu.uni.biblioteca.dto.EstudianteDto;
 import pe.edu.uni.biblioteca.dto.UsuarioDto;
 
@@ -19,7 +22,7 @@ import pe.edu.uni.biblioteca.dto.UsuarioDto;
  */
 public class ConsultaService {
 	
-	public EstudianteDto consultaPorCodigo(String codigo){
+	public EstudianteDto consultaEmpleado(String codigo){
 		EstudianteDto bean = null;
 		Connection cn = null;
 		PreparedStatement pstm;
@@ -58,6 +61,51 @@ public class ConsultaService {
 		return bean;
 	}
 	
-	
+	public List<EjemplarDto> consultaEjemplares(String titulo){
+		List<EjemplarDto> lista = new ArrayList<>();
+		Connection cn = null;
+		PreparedStatement pstm;
+		ResultSet rs;
+		String sql = """
+			select E.IDEJEMPLAR, E.CODIGO, L.TITULO,
+			E.EDITORIAL, E.EDICION, E.ANIO
+			from LIBRO L 
+			join EJEMPLAR E on L.IDLIBRO = E.IDLIBRO   
+          where E.IDSITUACION = 1 and L.TITULO like ?   
+      """;
+		try {
+			// Conexion con la BD
+			cn = AccesoDB.getConnection();
+			// Preparando el objeto
+			pstm = cn.prepareStatement(sql);
+			titulo = "%" + titulo + "%";
+			pstm.setString(1, titulo);
+			// Ejecutar el objeto
+			rs = pstm.executeQuery();
+			// Verificar resultado
+			while(rs.next()){
+				EjemplarDto bean = new EjemplarDto();
+				bean.setIdejemplar(rs.getLong("IDEJEMPLAR"));
+				bean.setCodigo(rs.getString("CODIGO"));
+				bean.setTitulo(rs.getString("TITULO"));
+				bean.setEditorial(rs.getString("EDITORIAL"));
+				bean.setEdicion(rs.getInt("EDICION"));
+				bean.setAnio(rs.getInt("ANIO"));
+				lista.add(bean);
+			}
+			rs.close();
+			pstm.close();		
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage());
+		} catch (Exception e) {
+			throw new RuntimeException("Error en el proceso.");
+		} finally{
+			try {
+				cn.close();
+			} catch (Exception e) {
+			}
+		}
+		return lista;
+	}
 
 }
