@@ -4,8 +4,10 @@ pe\edu\uni\biblioteca\prueba\PruebaLogon03.class
 pe\edu\uni\biblioteca\view\RegistrarPrestamoView$3.class
 pe\edu\uni\biblioteca\view\RegistrarPrestamoView$1.class
 pe\edu\uni\biblioteca\service\ConsultaService.class
+pe\edu\uni\biblioteca\prueba\GmailEmailSender.class
 pe\edu\uni\biblioteca\prueba\PruebaLogon01.class
 pe\edu\uni\biblioteca\prueba\PruebaConsultaEstudiante.class
+pe\edu\uni\biblioteca\prueba\GmailEmailSender$1.class
 pe\edu\uni\biblioteca\prueba\PruebaPrestamo02.class
 pe\edu\uni\biblioteca\view\MainView$2.class
 pe\edu\uni\biblioteca\view\LogonView$1.class
