@@ -3,6 +3,7 @@ package pe.edu.uni.biblioteca.controller;
 import java.util.List;
 import pe.edu.uni.biblioteca.dto.EjemplarDto;
 import pe.edu.uni.biblioteca.dto.EstudianteDto;
+import pe.edu.uni.biblioteca.dto.Reporte01;
 import pe.edu.uni.biblioteca.service.ConsultaService;
 
 /**
@@ -15,6 +16,11 @@ import pe.edu.uni.biblioteca.service.ConsultaService;
  * @cursos gcoronelc.github.io
  */
 public class ConsultaController {
+	
+	public List<Reporte01> obtenerReporte01(){
+		ConsultaService service = new ConsultaService();
+		return service.obtenerReporte01();
+	}
 	
 	
 	public EstudianteDto consultaEmpleado(String codigo){

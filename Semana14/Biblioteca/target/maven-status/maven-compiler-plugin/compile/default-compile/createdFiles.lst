@@ -22,6 +22,7 @@ pe\edu\uni\biblioteca\dto\PrestamoDto.class
 pe\edu\uni\biblioteca\view\MainView.class
 pe\edu\uni\biblioteca\prueba\PruebaConsultaEjemplares.class
 pe\edu\uni\biblioteca\view\RegistrarPrestamoView$2.class
+pe\edu\uni\biblioteca\dto\Reporte01.class
 pe\edu\uni\biblioteca\view\ConsultaView.class
 pe\edu\uni\biblioteca\prueba\PruebaPrestamo03.class
 pe\edu\uni\biblioteca\service\BiblioService.class

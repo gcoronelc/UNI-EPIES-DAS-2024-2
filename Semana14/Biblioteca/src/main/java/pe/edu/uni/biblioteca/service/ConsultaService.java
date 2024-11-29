@@ -9,6 +9,7 @@ import java.util.List;
 import pe.edu.uni.biblioteca.db.AccesoDB;
 import pe.edu.uni.biblioteca.dto.EjemplarDto;
 import pe.edu.uni.biblioteca.dto.EstudianteDto;
+import pe.edu.uni.biblioteca.dto.Reporte01;
 import pe.edu.uni.biblioteca.dto.UsuarioDto;
 
 /**
@@ -21,6 +22,42 @@ import pe.edu.uni.biblioteca.dto.UsuarioDto;
  * @cursos gcoronelc.github.io
  */
 public class ConsultaService {
+	
+	public List<Reporte01> obtenerReporte01(){
+		String sql = """
+			select e.DESCRIPCION, count(1) FRECUENCIA 
+			from PRESTAMO p
+			join ESTADO e on p.IDESTADO = e.IDESTADO
+			group by e.DESCRIPCION
+      """;
+		List<Reporte01> lista = new ArrayList<>();
+		Connection cn = null;
+		PreparedStatement pstm;
+		ResultSet rs;
+		try {
+			cn = AccesoDB.getConnection();
+			pstm = cn.prepareStatement(sql);
+			rs = pstm.executeQuery();
+			while(rs.next()){
+				Reporte01 bean = new Reporte01();
+				bean.setEtiqueta(rs.getString("DESCRIPCION"));
+				bean.setFrecuencia(rs.getInt("FRECUENCIA"));
+				lista.add(bean);
+			}
+			rs.close();
+			pstm.close();
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage());
+		} catch (Exception e) {
+			throw new RuntimeException("Error en la consulta.");
+		} finally{
+			try {
+				cn.close();
+			} catch (Exception e) {
+			}
+		}
+		return lista;
+	}
 	
 	public EstudianteDto consultaEmpleado(String codigo){
 		EstudianteDto bean = null;

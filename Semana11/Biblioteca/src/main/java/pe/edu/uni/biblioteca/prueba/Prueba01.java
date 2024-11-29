@@ -1,6 +1,7 @@
 package pe.edu.uni.biblioteca.prueba;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import pe.edu.uni.biblioteca.db.AccesoDB;
 
 /**
@@ -20,7 +21,7 @@ public class Prueba01 {
 			Connection cn = AccesoDB.getConnection();
 			System.out.println("Conexión Ok.");
 			cn.close();
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			System.err.println(e.getMessage());
 		}
 		
